@@ -5,11 +5,26 @@ import time
 
 # Function to get user credentials
 def get_credentials():
-    username = input("Enter your IKE username: ")
-    password = input("Enter your IKE password: ")
-    with open("credentials.txt", "w") as cred_file:
-        cred_file.write(f"{username}\n{password}")
-    print("Credentials saved!")
+    for _ in range(3):  # Allow up to 3 attempts
+        username = input("Enter your IKE username: ")
+        password = input("Enter your IKE password: ")
+        with open("credentials.txt", "w") as cred_file:
+            cred_file.write(f"{username}\n{password}")
+        
+        if test_credentials():
+            print("Credentials saved and verified!")
+            return
+        else:
+            print("Invalid credentials. Please try again.")
+    
+    print("Failed to provide valid credentials after multiple attempts. Exiting.")
+    exit()
+
+# Function to test if the credentials are valid
+def test_credentials():
+    # Try a dummy connection or check to see if credentials work
+    # This is a placeholder function; in a real scenario, you'd check against a known valid endpoint
+    return True  # Replace with actual test
 
 # Function to load credentials
 def load_credentials():
