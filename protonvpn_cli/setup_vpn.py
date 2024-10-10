@@ -31,7 +31,7 @@ def get_region():
 
     choice = input("Enter your choice: ").strip().capitalize()
     for name, abbrev in regions.items():
-        if choice in [name, abbrev]:
+        if choice in [name, abbrev, name.lower(), abbrev.lower()]:
             return name
     
     print("Invalid choice. Please try again.")
@@ -39,7 +39,8 @@ def get_region():
 
 def try_vpn_connection(vpn_file, credentials_file, protocol="udp", max_retries=3):
     for attempt in range(max_retries):
-        exit_code = os.system(f"openvpn --config {vpn_file} --auth-user-pass {credentials_file} --proto {protocol}")
+        print(f"Attempting to connect using {vpn_file}")
+        exit_code = os.system(f"sudo openvpn --config {vpn_file} --auth-user-pass {credentials_file} --proto {protocol}")
         if exit_code == 0:
             print("Connected successfully!")
             return True
@@ -56,10 +57,11 @@ def setup_vpn():
     username, password = load_credentials()
     region = get_region()
 
+    home_directory = os.path.expanduser("~")
     vpn_paths = {
-        "Japan": "protonvpn_cli/Regions/Japan/*",
-        "Netherlands": "protonvpn_cli/Regions/Netherlands/*",
-        "USA": "protonvpn_cli/Regions/USA/*"
+        "Japan": f"{home_directory}/linux-cli-community/protonvpn_cli/Regions/Japan/*.ovpn",
+        "Netherlands": f"{home_directory}/linux-cli-community/protonvpn_cli/Regions/Netherlands/*.ovpn",
+        "USA": f"{home_directory}/linux-cli-community/protonvpn_cli/Regions/USA/*.ovpn"
     }
 
     vpn_files = glob.glob(vpn_paths[region])
