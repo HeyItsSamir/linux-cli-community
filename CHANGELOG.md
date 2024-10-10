@@ -1,7 +1,7 @@
 # ProtonVPN-CLI Changelog
 
 ## Table of Contents
-
+- [v2.2.11](#v2211)
 - [v2.2.10](#v2210)
 - [v2.2.7](#v227)
 - [v2.2.6](#v226)
@@ -17,6 +17,10 @@
 - [v2.0.0](#v200)
 - [v0.1.0](#v010)
 
+## v2.2.11
+
+- Enhancement: Add
+  
 ## v2.2.10
 
 - Fix: User-Agent format
