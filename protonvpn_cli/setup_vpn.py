@@ -54,10 +54,30 @@ def get_region():
     print("Failed to provide a valid region after multiple attempts. Exiting.")
     exit()
 
-def try_vpn_connection(vpn_file, credentials_file, protocol="udp", max_retries=3):
+def check_dns_manager():
+    if os.system("command -v resolvconf") == 0:
+        print("Using openresolv.")
+        return "openresolv"
+    elif os.system("command -v systemd-resolve") == 0:
+        print("Using systemd-resolved.")
+        return "systemd-resolved"
+    else:
+        print("No DNS manager found. Exiting.")
+        exit()
+
+def try_vpn_connection(vpn_file, credentials_file, dns_manager, protocol="udp", max_retries=3):
+    up_script = ""
+    down_script = ""
+    
+    if dns_manager == "openresolv":
+        up_script = "--up /etc/openvpn/update-resolv-conf"
+        down_script = "--down /etc/openvpn/update-resolv-conf"
+    elif dns_manager == "systemd-resolved":
+        up_script = "--up /etc/openvpn/update-systemd-resolved --down /etc/openvpn/update-systemd-resolved --down-pre"
+
     for attempt in range(max_retries):
         print(f"Attempting to connect using {vpn_file}")
-        exit_code = os.system(f"sudo openvpn --config {vpn_file} --auth-user-pass {credentials_file} --proto {protocol}")
+        exit_code = os.system(f"sudo openvpn --config {vpn_file} --auth-user-pass {credentials_file} --proto {protocol} {up_script} {down_script}")
         if exit_code == 0:
             print("Connected successfully!")
             return True
@@ -73,6 +93,7 @@ def setup_vpn():
 
     username, password = load_credentials()
     region = get_region()
+    dns_manager = check_dns_manager()
 
     home_directory = os.path.expanduser("~")
     vpn_paths = {
@@ -85,7 +106,7 @@ def setup_vpn():
     random.shuffle(vpn_files)  # Shuffle the list to ensure randomness
 
     for vpn_file in vpn_files:
-        if try_vpn_connection(vpn_file, "credentials.txt"):
+        if try_vpn_connection(vpn_file, "credentials.txt", dns_manager):
             return
     print(f"Could not connect to any {region} UDP servers.")
 
