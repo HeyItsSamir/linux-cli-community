@@ -19,7 +19,7 @@
 
 ## v2.2.11
 
-- Enhancement: Added a setup_vpn.py script to this repo. The file is located in protonvpn-cli/setup_vpn.py
+- Enhancement: Added a setup_vpn.py script to this repoistory located in protonvpn-cli DIR.
   
 ## v2.2.10
 
