@@ -1,4 +1,4 @@
-# OpenProtonVPN CLI Setup Guide
+# OpenVPN-ProtonVPN CLI Script
 ##### You can refer to ProtonVPN official documentation: https://protonvpn.com/support/linux-openvpn/
 
 ## Clone the Repoistory
