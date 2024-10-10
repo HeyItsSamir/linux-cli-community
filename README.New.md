@@ -1,4 +1,9 @@
-# ProtonVPN OpenVPN CLI Setup Guide
+<h1 align="center">ProtonVPN-CLI</h1>
+<p align="center">
+  <img src="resources/images/linux-cli-banner.png" alt="Logo"></img>
+</p>
+
+# ProtonVPN-OpenVPN CLI Setup Guide
 ##### You can refer to ProtonVPN official documentation: https://protonvpn.com/support/linux-openvpn/
 ##### You will need your OpenVPN credentials which are found in account.protonvpn.com, go to Account → OpenVPN / IKEv2 username to view your OpenVPN username and password. Note that these are not your regular Proton Account username and password.
 
