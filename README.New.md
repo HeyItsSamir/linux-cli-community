@@ -1,41 +1,21 @@
-<h1 align="center">ProtonVPN-CLI</h1>
-<p align="center">
-  <img src="resources/images/linux-cli-banner.png" alt="Logo"></img>
-</p>
-
-# ProtonVPN-OpenVPN CLI Setup Guide
+# OpenProtonVPN CLI Setup Guide
 ##### You can refer to ProtonVPN official documentation: https://protonvpn.com/support/linux-openvpn/
-##### You will need your OpenVPN credentials which are found in account.protonvpn.com, go to Account → OpenVPN / IKEv2 username to view your OpenVPN username and password. Note that these are not your regular Proton Account username and password.
 
 ## Clone the Repoistory
 ```
 git clone https://github.com/HeyItsSamir/linux-cli-community.git
+```
+##### This will take you inside protonvpn_cli DIR. This DIR holds the setup_vpn.py
+```
 cd linux-cli-community/protonvpn_cli
 ```
 
-## Installation & Updating
-### Installing ProtonVPN-CLI from Distribution Repositories
+## Dependencies
+### Installing Dependcies
+##### You can refer to ProtonVPN official documentation: https://protonvpn.com/support/linux-openvpn/#cli
+##### You will need your OpenVPN credentials which are found in account.protonvpn.com, go to Account → OpenVPN / IKEv2 username to view your OpenVPN username and password. Note that these are not your regular Proton Account username and password
 
 For the following Linux distribution(s), install the official protonvpn-cli package:
-
-#### On Debian and Ubuntu-based distributions
-```
-sudo apt install -y protonvpn-cli
-```
-#### Fedora
-```
-sudo dnf install -y protonvpn-cli
-```
-#### CentOS & RHEL 7.x:
-```
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum install protonvpn-cli
-```
-#### CentOS & RHEL 8.x:
-```
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo dnf install -y protonvpn-cli
-```
 
 ### Installing OpenVPN 
 
@@ -53,8 +33,10 @@ sudo pacman -S openvpn
 ```
 
 ### Installing OpenResolv
-#### You need openresolv (an open-source implementation of resolvconf) to properly configure DNS and prevent DNS leaks.
-#### On Debian and Ubuntu-based distributions
+##### You need openresolv (an open-source implementation of resolvconf) to properly configure DNS and prevent DNS leaks.
+##### Some distributions may or may not use openresolv for DNS resolution.
+
+#### On Debian and Ubuntu-based distributions (Ubuntu uses systemd-resolved)
 ```
 sudo apt install openresolv
 ```
