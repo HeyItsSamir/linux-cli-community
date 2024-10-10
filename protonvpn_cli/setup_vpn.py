@@ -44,13 +44,15 @@ def get_region():
     for name, abbrev in regions.items():
         print(f"{name} ({abbrev})")
 
-    choice = input("Enter your choice: ").strip().capitalize()
-    for name, abbrev in regions.items():
-        if choice in [name, abbrev, name.lower(), abbrev.lower()]:
-            return name
+    for _ in range(3):  # Allow up to 3 attempts
+        choice = input("Enter your choice: ").strip().capitalize()
+        for name, abbrev in regions.items():
+            if choice in [name, abbrev, name.lower(), abbrev.lower()]:
+                return name
+        print("Invalid choice. Please try again.")
     
-    print("Invalid choice. Please try again.")
-    return get_region()
+    print("Failed to provide a valid region after multiple attempts. Exiting.")
+    exit()
 
 def try_vpn_connection(vpn_file, credentials_file, protocol="udp", max_retries=3):
     for attempt in range(max_retries):
