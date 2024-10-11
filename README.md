@@ -55,3 +55,8 @@ sudo pacman -S openresolv
 sudo wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
 sudo chmod +x "/etc/openvpn/update-resolv-conf"
 ```
+
+### Run setup_vpn.py inside linux-cli-community/protonvpn_cli
+```
+python3 setup_vpn.py
+```
